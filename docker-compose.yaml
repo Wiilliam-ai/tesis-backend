@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:lts
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: node_db
+      MYSQL_USER: node_user
+      MYSQL_PASSWORD: node_password
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysqldata:/var/lib/mysql

@@ -12,3 +12,34 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum CardType {
+  DNI
+  CE
+  PASSPORT
+}
+
+model Patient {
+  id        String   @id @default(uuid())
+  firstName String   @db.VarChar(150)       @map("first_name")
+  lastName  String   @db.VarChar(150)       @map("last_name")
+  cardId    String   @unique @db.Char(10)   @map("card_id")
+  email     String   @unique                @map("email")
+  phone     String?  @db.Char(12)           @map("phone")
+  address   String?  @db.VarChar(80)        @map("address")
+  typeCard  CardType @default(DNI)          @map("type_card")
+
+  User User?
+  @@map("patients")
+}
+
+model User {
+  patientId String  @unique                 @map("patient_id")
+  username  String  @unique @db.VarChar(20) @map("username")
+  password  String  @db.Text                @map("password")
+  active    Boolean @default(true)          @map("active")
+
+  Patient Patient @relation(fields: [patientId], references: [id])
+
+  @@map("users")
+}

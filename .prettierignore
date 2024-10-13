@@ -1,0 +1,13 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore package manager files
+package-lock.yaml
+package.json
+
+# Ignore files ts config files
+tsconfig.json
+
+# Ignore files md files
+*.md
