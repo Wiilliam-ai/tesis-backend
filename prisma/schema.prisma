@@ -13,33 +13,76 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum CardType {
-  DNI
-  CE
-  PASSPORT
+model Role {
+  id        String   @id @default(cuid()) 
+  doUser    Boolean
+  doAdmin   Boolean
+  doDevelop Boolean
+
+  user User?
 }
 
-model Patient {
-  id        String   @id @default(uuid())
-  firstName String   @db.VarChar(150)       @map("first_name")
-  lastName  String   @db.VarChar(150)       @map("last_name")
-  cardId    String   @unique @db.Char(10)   @map("card_id")
-  email     String   @unique                @map("email")
-  phone     String?  @db.Char(12)           @map("phone")
-  address   String?  @db.VarChar(80)        @map("address")
-  typeCard  CardType @default(DNI)          @map("type_card")
+model Avatar {
+  id        String   @id @default(cuid())
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  User User?
-  @@map("patients")
+  user User?
+
+  @@map("avatars")
 }
+
+model TypeUser {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User[]
+  @@map("type_users")
+}
+
 
 model User {
-  patientId String  @unique                 @map("patient_id")
-  username  String  @unique @db.VarChar(20) @map("username")
-  password  String  @db.Text                @map("password")
-  active    Boolean @default(true)          @map("active")
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
 
-  Patient Patient @relation(fields: [patientId], references: [id])
+  avatar   Avatar  @relation(fields: [avatarId], references: [id])
+  avatarId String @unique
+
+  role  Role   @relation(fields: [roleId], references: [id])
+  roleId String @unique
+
+  typeUser  TypeUser   @relation(fields: [typeUserId], references: [id])
+  typeUserId Int 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clusoseRecord ClusoseRecord[] @relation("UserClusoseRecords")
+  clusoseRecordRegister ClusoseRecord[] @relation("UserRegisterClusoseRecords")
 
   @@map("users")
+}
+
+model ClusoseRecord {
+  id        String   @id @default(cuid())
+  clucoseLevel  Float @map("clucose_level")
+  fasting  Boolean
+  notes    String?
+
+  user User @relation("UserClusoseRecords", fields: [userId], references: [id])
+  userId String
+
+  userRegister User? @relation("UserRegisterClusoseRecords", fields: [userRegisterId], references: [id])
+  userRegisterId String?
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("clusose_records")
 }

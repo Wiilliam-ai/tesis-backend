@@ -6,9 +6,9 @@ export class HandleError {
   static execute = (error: unknown, logMsg: string, res: Response) => {
     if (error instanceof CustomError) {
       CustomResponse.execute({
+        message: error.message,
         res,
         status: error.statusCode,
-        message: error.message,
       })
       return
     }
