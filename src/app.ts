@@ -9,3 +9,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/uploads', express.static('uploads'))
 app.use('/api', AppRoutes.routes)
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Hello World! 🌎',
+  })
+})
