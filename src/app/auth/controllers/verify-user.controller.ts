@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 import { VerifyUserDto } from '../dtos/verifyUser.dto'
-import { HttpStatus } from '@/config/http-status'
-import { HandleError } from '@/helpers/errors/handle-error'
 import { AuthServices } from '../auth.services'
-import { CustomResponse } from '@/helpers/custom/custom-response'
+import { CustomResponse } from '../../../helpers/custom/custom-response'
+import { HttpStatus } from '../../../config/http-status'
+import { HandleError } from '../../../helpers/errors/handle-error'
 
 export const verifyUser = async (req: Request, res: Response) => {
   const [error, verifyUserDto] = VerifyUserDto.check(req.body)

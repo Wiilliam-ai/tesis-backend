@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
 import { LoginUserDto } from '../dtos/login-user.dto'
-import { HttpStatus } from '@/config/http-status'
-import { HandleError } from '@/helpers/errors/handle-error'
 import { AuthServices } from '../auth.services'
-import { JwtAuth } from '@/config/jwtauth'
-import { CustomResponse } from '@/helpers/custom/custom-response'
+import { CustomResponse } from '../../../helpers/custom/custom-response'
+import { HttpStatus } from '../../../config/http-status'
+import { JwtAuth } from '../../../config/jwtauth'
+import { HandleError } from '../../../helpers/errors/handle-error'
 
 export const loginUser = async (req: Request, res: Response) => {
   const [error, loginUserDto] = LoginUserDto.check(req.body)

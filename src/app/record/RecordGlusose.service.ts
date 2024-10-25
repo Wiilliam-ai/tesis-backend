@@ -1,8 +1,8 @@
-import { CustomError } from '@/helpers/errors/custom-error'
 import { VerifyUserDto } from '../auth/dtos/verifyUser.dto'
 import { RegisterClucoseDto } from './dtos/register-glucose.dto'
 import { PrismaClient } from '@prisma/client'
 import { UpdateGlucoseDto } from './dtos/update-glucose.dto'
+import { CustomError } from '../../helpers/errors/custom-error'
 
 export class RecordGlucoseService {
   static async registerGlucose(

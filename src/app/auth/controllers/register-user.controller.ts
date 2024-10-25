@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
 import { RegisterUserDto } from '../dtos/register-user.dto'
 import { AuthServices } from '../auth.services'
-import { HttpStatus } from '@/config/http-status'
-import { HandleError } from '@/helpers/errors/handle-error'
-import { CustomResponse } from '@/helpers/custom/custom-response'
-import { getFileProperty } from '@/utils/getFileProperty'
-import { UploadFile } from '@/utils/uploadFile'
+import { getFileProperty } from '../../../utils/getFileProperty'
+import { CustomResponse } from '../../../helpers/custom/custom-response'
+import { HttpStatus } from '../../../config/http-status'
+import { UploadFile } from '../../../utils/uploadFile'
+import { HandleError } from '../../../helpers/errors/handle-error'
 
 export const registerUser = async (req: Request, res: Response) => {
   const [name, buffer] = getFileProperty(req.file)

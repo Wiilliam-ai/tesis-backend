@@ -2,8 +2,8 @@ import { Router } from 'express'
 import { registerUser } from './controllers/register-user.controller'
 import { loginUser } from './controllers/login-user.controller'
 import { verifyUser } from './controllers/verify-user.controller'
-import { AuthMiddleware } from '@/helpers/middlewares/auth-midleware'
-import { FilesMiddleware } from '@/helpers/middlewares/files-midleware'
+import { FilesMiddleware } from '../../helpers/middlewares/files-midleware'
+import { AuthMiddleware } from '../../helpers/middlewares/auth-midleware'
 
 export class AuthRoutes {
   static get routes(): Router {

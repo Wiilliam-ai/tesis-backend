@@ -1,10 +1,10 @@
-import { HandleError } from '@/helpers/errors/handle-error'
 import { Request, Response } from 'express'
-import { RegisterClucoseDto } from '../dtos/register-glucose.dto'
-import { VerifyUserDto } from '@/app/auth/dtos/verifyUser.dto'
-import { CustomError } from '@/helpers/errors/custom-error'
 import { RecordGlucoseService } from '../RecordGlusose.service'
-import { CustomResponse } from '@/helpers/custom/custom-response'
+import { RegisterClucoseDto } from '../dtos/register-glucose.dto'
+import { VerifyUserDto } from '../../auth/dtos/verifyUser.dto'
+import { CustomError } from '../../../helpers/errors/custom-error'
+import { CustomResponse } from '../../../helpers/custom/custom-response'
+import { HandleError } from '../../../helpers/errors/handle-error'
 
 export const updateGlucose = async (req: Request, res: Response) => {
   try {

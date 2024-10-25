@@ -1,9 +1,9 @@
-import { VerifyUserDto } from '@/app/auth/dtos/verifyUser.dto'
-import { CustomError } from '@/helpers/errors/custom-error'
-import { HandleError } from '@/helpers/errors/handle-error'
 import { Request, Response } from 'express'
 import { RecordGlucoseService } from '../RecordGlusose.service'
-import { CustomResponse } from '@/helpers/custom/custom-response'
+import { VerifyUserDto } from '../../auth/dtos/verifyUser.dto'
+import { CustomError } from '../../../helpers/errors/custom-error'
+import { CustomResponse } from '../../../helpers/custom/custom-response'
+import { HandleError } from '../../../helpers/errors/handle-error'
 
 export const deletGlucose = async (req: Request, res: Response) => {
   try {

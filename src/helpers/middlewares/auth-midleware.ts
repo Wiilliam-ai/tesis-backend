@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
-import { JwtAuth } from '@/config/jwtauth'
 import { CustomError } from '../errors/custom-error'
 import { HandleError } from '../errors/handle-error'
+import { JwtAuth } from '../../config/jwtauth'
 
 interface IPayload {
   id: string

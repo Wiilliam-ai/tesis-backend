@@ -1,13 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const app = (0, express_1.default)();
-app.get("/", (req, res) => {
-    res.send("Hello World!2");
-});
-app.listen(3000, () => {
-    console.log("Server is running on http://localhost:3000");
+const app_1 = require("./app");
+const envs_config_1 = require("./config/envs.config");
+app_1.app.listen(envs_config_1.PORT, () => {
+    console.log('Server is running at http://localhost:3000');
 });

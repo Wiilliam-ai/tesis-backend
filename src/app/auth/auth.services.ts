@@ -1,10 +1,10 @@
-import { CustomError } from '@/helpers/errors/custom-error'
-import { RegisterUserDto } from './dtos/register-user.dto'
 import { PrismaClient } from '@prisma/client'
-import { URL_IMAGE_DEFAULT } from '@/helpers/global/url-global'
-import { Bcrypt } from '@/config/bcrypt'
 import { LoginUserDto } from './dtos/login-user.dto'
+import { RegisterUserDto } from './dtos/register-user.dto'
 import { VerifyUserDto } from './dtos/verifyUser.dto'
+import { CustomError } from '../../helpers/errors/custom-error'
+import { URL_IMAGE_DEFAULT } from '../../helpers/global/url-global'
+import { Bcrypt } from '../../config/bcrypt'
 
 export class AuthServices {
   static async registerUser(registerUserDto: RegisterUserDto) {
