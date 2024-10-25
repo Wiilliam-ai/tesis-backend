@@ -9,7 +9,6 @@ import { VerifyUserDto } from './dtos/verifyUser.dto'
 export class AuthServices {
   static async registerUser(registerUserDto: RegisterUserDto) {
     try {
-      console.log({ registerUserDto })
       const { email, name, password, avatar, typeUserId } = registerUserDto
       const prisma = new PrismaClient()
 
@@ -50,7 +49,7 @@ export class AuthServices {
           password: passwordHash,
           avatarId: newAvatar.id,
           roleId: roleDefault.id,
-          typeUserId: 1,
+          typeUserId: typeUserId ? typeUserId : 1,
         },
       })
 
@@ -70,7 +69,6 @@ export class AuthServices {
 
       return userResult
     } catch (error) {
-      console.log({ error })
       if (error instanceof CustomError) {
         throw error
       }

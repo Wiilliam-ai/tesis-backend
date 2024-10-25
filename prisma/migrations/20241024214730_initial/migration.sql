@@ -20,7 +20,7 @@ CREATE TABLE `avatars` (
 
 -- CreateTable
 CREATE TABLE `type_users` (
-    `id` VARCHAR(191) NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
@@ -36,14 +36,13 @@ CREATE TABLE `users` (
     `password` VARCHAR(191) NOT NULL,
     `avatarId` VARCHAR(191) NOT NULL,
     `roleId` VARCHAR(191) NOT NULL,
-    `typeUserId` VARCHAR(191) NOT NULL,
+    `typeUserId` INTEGER NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `users_email_key`(`email`),
     UNIQUE INDEX `users_avatarId_key`(`avatarId`),
     UNIQUE INDEX `users_roleId_key`(`roleId`),
-    UNIQUE INDEX `users_typeUserId_key`(`typeUserId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -66,9 +65,6 @@ ALTER TABLE `users` ADD CONSTRAINT `users_avatarId_fkey` FOREIGN KEY (`avatarId`
 
 -- AddForeignKey
 ALTER TABLE `users` ADD CONSTRAINT `users_roleId_fkey` FOREIGN KEY (`roleId`) REFERENCES `Role`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `users` ADD CONSTRAINT `users_typeUserId_fkey` FOREIGN KEY (`typeUserId`) REFERENCES `type_users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `clusose_records` ADD CONSTRAINT `clusose_records_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
